@@ -1,11 +1,15 @@
 package com.appescola.appescola.model;
 
 import java.util.Date;
+import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,4 +32,10 @@ public class Aluno {
     private String email;
     private String numTelefone;
     private String numTelefoneResponsavel;
+
+    @OneToMany(mappedBy = "aluno")
+    private List<Nota> notas;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Turma turma;
 }
