@@ -33,9 +33,9 @@ public class Aluno {
     private String numTelefone;
     private String numTelefoneResponsavel;
 
-    @OneToMany(mappedBy = "aluno")
+    @OneToMany(mappedBy = "aluno") // correto
     private List<Nota> notas;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(cascade = CascadeType.REFRESH) // correto
     private Turma turma;
 }

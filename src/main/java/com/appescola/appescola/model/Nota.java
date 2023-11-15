@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,10 @@ public class Nota {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double valor;
-    private Disciplina discDaNota;
-    private Aluno notaDoAluno;
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Aluno aluno;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    private Disciplina discDaNota;
 }

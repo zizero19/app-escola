@@ -9,7 +9,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,6 @@ public class Professor {
     private String numTelefone;
     private String email;
 
-    @ManyToMany(cascade = CascadeType.REFRESH)
-    @JoinTable(name = "disciplina_professor", joinColumns = @JoinColumn(name = "professor_id"), inverseJoinColumns = @JoinColumn(name = "disciplina_id"))
-    private List<Disciplina> disciplinasProfessor;
+    @OneToMany(mappedBy = "disciplinasProf")
+    private List<Disciplina> disciplinasProf;
 }

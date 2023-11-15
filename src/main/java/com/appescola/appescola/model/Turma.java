@@ -10,7 +10,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -31,10 +30,9 @@ public class Turma {
     private Date anoLetivo;
     private int numTurma;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinTable(name = "turma_disciplina", joinColumns = @JoinColumn(name = "turma_id"), inverseJoinColumns = @JoinColumn(name = "turma_id"))
+    @OneToMany(cascade = CascadeType.REFRESH)
     private List<Disciplina> disciplinasTurma;
 
-    @OneToMany(mappedBy = "turmas")
+    @OneToMany(mappedBy = "turma") // Correto
     private List<Aluno> alunos;
 }
